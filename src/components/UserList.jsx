@@ -16,17 +16,7 @@ function UserList() {
         }
     };
 
-    // Delete user by ID
-    const handleDelete = async (id) => {
-        try {
-            const response = await axios.delete(`http://localhost:8080/user/api/delete/${id}`);
-            setMessage(response.data);
-            fetchUsers(); // Refresh the list
-        } catch (err) {
-            console.error(err);
-            setMessage('Error deleting user');
-        }
-    };
+
 
     useEffect(() => {
         fetchUsers();
@@ -42,7 +32,6 @@ function UserList() {
                         <th>ID</th>
                         <th>Username</th>
                         <th>Password</th>
-                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,14 +41,7 @@ function UserList() {
                                 <td>{user.id}</td>
                                 <td>{user.name}</td>
                                 <td>{user.password}</td>
-                                <td>
-                                    <button
-                                        className="btn btn-sm btn-danger"
-                                        onClick={() => handleDelete(user.id)}
-                                    >
-                                        Delete
-                                    </button>
-                                </td>
+                                
                             </tr>
                         ))
                     ) : (
